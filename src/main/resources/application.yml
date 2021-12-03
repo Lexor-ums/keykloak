@@ -1,0 +1,12 @@
+spring:
+  main:
+    allow-circular-references: true
+  application.name: ${APPLICATION_NAME:keycloak}
+server:
+  port: ${SERVER_PORT:8080}
+keycloak:
+  auth-server-url: http://127.0.0.1:8484/auth
+  realm: keycloak_demo
+  resource: demo_client
+  secret:
+  public-client: true
