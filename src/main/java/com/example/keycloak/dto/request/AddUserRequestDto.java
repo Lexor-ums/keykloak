@@ -9,11 +9,11 @@ import java.util.Map;
 
 @Data
 public class AddUserRequestDto {
-    private String username;
-    private String firstname;
-    private String surname;
-    private String email;
-    private String password;
+    private String username = "userID";
+    private String firstname = "lex";
+    private String surname = "Su";
+    private String email = "wfwef";
+    private String password = "qwerty";
     @JsonDeserialize(using = StringListMapDeserializer.class)
     protected Map<String, List<String>> attributes;
 }

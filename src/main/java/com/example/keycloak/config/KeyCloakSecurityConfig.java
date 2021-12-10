@@ -9,7 +9,9 @@ import org.keycloak.adapters.springsecurity.client.KeycloakClientRequestFactory;
 import org.keycloak.adapters.springsecurity.client.KeycloakRestTemplate;
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,7 +31,7 @@ public class KeyCloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
 
     @Bean
     public KeycloakRestTemplate keycloakRestTemplate() {
-        return new KeycloakRestTemplate(keycloakClientRequestFactory);
+        return new KeycloakRestTemplate(new KeycloakClientRequestFactory());
     }
 
     @Override
@@ -61,13 +63,9 @@ public class KeyCloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http
-                .logout()
-        .logoutRequestMatcher(new AntPathRequestMatcher("/sso/logout"))
-//                .logoutUrl("/api/logout")
-//                .addLogoutHandler(keycloakLogoutHandler())
-                .and()
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/anonymous/**").permitAll()
+                .antMatchers("/api/add_user/*").permitAll()
                 .anyRequest().fullyAuthenticated();
     }
 }

@@ -24,13 +24,13 @@ public class KeycloakClientConfig {
     @Bean
     public Keycloak keyCloak() {
         return KeycloakBuilder.builder()
-                .clientId(clientId)
-                .grantType(OAuth2Constants.CLIENT_CREDENTIALS)
-                .realm(realm)
+                .clientId("admin-cli")
+//                .grantType(OAuth2Constants.CLIENT_CREDENTIALS)
+                .realm("master")
                 .serverUrl(authUrl)
-                .clientSecret(secret)
-//                .username("admin")
-//                .password("admin_password")
+//                .clientSecret(secret)
+                .username("admin")
+                .password("admin_password")
                 .build();
     }
 }

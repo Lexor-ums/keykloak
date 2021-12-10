@@ -2,6 +2,7 @@ package com.example.keycloak.converter;
 
 import com.example.keycloak.dto.request.AddUserRequestDto;
 import org.keycloak.representations.idm.CredentialRepresentation;
+import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 
 import java.util.Collections;
@@ -18,6 +19,9 @@ public class AddUserDtoToUserRepresentationConverter {
         userRepresentation.setEmail(dto.getEmail());
         CredentialRepresentation credentialRepresentation = createPasswordCredentials(dto.getPassword());
         userRepresentation.setCredentials(Collections.singletonList(credentialRepresentation));
+        RoleRepresentation roleRepresentation = new RoleRepresentation();
+        roleRepresentation.setName("ROLE_USER");
+//        userRepresentation.setR
         return userRepresentation;
     }
 

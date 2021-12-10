@@ -11,7 +11,12 @@ keycloak:
   auth-server-url: http://127.0.0.1:8484/auth
   realm: keycloak_demo
   resource: demo_client
-#  use-resource-role-mappings: true
+#  bearer-only: true
+  use-resource-role-mappings: true
   credentials:
-    secret: b5dd0e7b-462f-45d5-bff3-d72e14a46893
+    secret: ef73224b-2649-48d9-886a-7d4ce9a1ae09
   public-client: false
+app:
+  keycloak:
+    login-url: http://localhost:8484/auth/realms/keycloak_demo/protocol/openid-connect/token
+    grant-type: password
